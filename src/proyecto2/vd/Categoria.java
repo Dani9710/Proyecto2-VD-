@@ -45,5 +45,16 @@ public class Categoria implements Serializable
     {
         return productos.remove(codigo);
     }
+
+    public float getNumeroCategoria()
+    {
+        return numeroCategoria;
+    }
+
+    public void setNumeroCategoria(float numeroCategoria)
+    {
+        this.numeroCategoria = numeroCategoria;
+    }
+    
     
 }

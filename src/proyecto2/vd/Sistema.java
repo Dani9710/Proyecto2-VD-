@@ -10,6 +10,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 /**
  *
  * @author sebap
@@ -50,7 +51,20 @@ public class Sistema
 //        ferreteria.listarProductos();
 //        
 //    }
-    
+    public void mostrarProductosCategoria(float numeroCategoria)
+    {
+        Set<Integer> codigos = catalogoProductos.keySet();
+        
+        for (Integer codigo : codigos){
+            Producto p = catalogoProductos.get(codigo);
+            if(numeroCategoria < p.getCategoria() && numeroCategoria > (p.getCategoria()+1))
+            {
+                System.out.println(p.getCodigo() + "\t" + p.getNombre() + "\t" + p.getPrecio());
+            }
+        }
+        
+        
+    }
     public void mostrarHogar()
     {
 //        System.out.println("Hogar: ");

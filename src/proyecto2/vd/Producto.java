@@ -52,6 +52,16 @@ public class Producto
     {
         this.codigo = codigo;
     }
+
+    public float getCategoria()
+    {
+        return categoria;
+    }
+
+    public void setCategoria(float categoria)
+    {
+        this.categoria = categoria;
+    }
     
     
     
