@@ -19,4 +19,13 @@ public class Menu
         System.out.println("4: Comprar productos normalmente");
         System.out.println("5: Consultar Descuentos");
     }
+    
+    static void mostrarMenuPago() {
+        
+        System.out.println("1: Cheque");
+        System.out.println("2: Credito");
+        System.out.println("3: Debito");
+        System.out.println("4: Efectivo");
+        
+    }
 }

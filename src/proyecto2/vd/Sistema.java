@@ -183,6 +183,20 @@ public class Sistema
           
         }
     }
+        
+        
+    public void mostrarCodigos()
+    {
+        Set<Integer> codigos = this.catalogoProductos.keySet();
+     
+        for (Integer c : codigos)
+        {
+            Producto p = this.catalogoProductos.get(c);
+            System.out.println(p.getCodigo() + "t" + p.getNombre());
+        }
+    }
+    
+    
         //Generar Cotizacion
         
         public void generarCotizacion()
