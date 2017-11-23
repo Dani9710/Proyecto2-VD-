@@ -19,9 +19,9 @@ public abstract class Carro
     private ArrayList<Producto> productos;
     private Calendar fechaInicio;
 
-    public Carro()
+    public Carro(ArrayList<Producto> productos)
     {
-        this.productos = new ArrayList<Producto>();
+        this.productos = productos;
         this.fechaInicio = Calendar.getInstance();
     }
     

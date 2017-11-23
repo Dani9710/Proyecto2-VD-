@@ -107,7 +107,7 @@ public class Interfaz
         while(continuar)
         {
             //reviso los productos
-            seleccionCategoriaProducto();
+            
             continuar = seguirComprando();
             //selecciono el que voy a compra
             //pregunto si quiere comprar otro 
@@ -175,75 +175,8 @@ public class Interfaz
     }
     
     
-    public boolean seguirComprando()
-    {
-        boolean continuar = true; 
-        System.out.println("¿Desea continuar comprando mas de nuestros productos?");
-        System.out.println("[1]Si");
-        System.out.println("[0]No");
-        int opcion = lector.leerNumero("Ingrese su opcion");
-        
-        if(opcion == 1)
-        {
-            continuar = true;
-        }
-        
-        else
-        {
-            continuar = false;
-        }
-        
-        return continuar; 
-    }
     
-    public void seleccionarHogar()
-    {
-        String seleccion = lector.leerLinea("Indique que produccto desea seleccionar"); 
-        sistema.mostrarHogar();
-        //Retornar objeto producto del hashmap
-    }
-    
-    public void seleccionarElectrohogar()
-    {
-        String seleccion = lector.leerLinea("Indique que produccto desea seleccionar"); 
-        sistema.mostrarElectrohogar();
-        
-        //Retornar objeto producto del hashmap
-    }
-    
-    public void seleccionarJardin()
-    {
-        String seleccion = lector.leerLinea("Indique que produccto desea seleccionar"); 
-        sistema.mostrarJardin();
-        //Retornar objeto producto del hashmap
-    }
-    
-    public void seleccionarFerreteria()
-    {
-        String seleccion = lector.leerLinea("Indique que produccto desea seleccionar"); 
-        sistema.mostrarFerreteria();
-        //Retornar objeto producto del hashmap
-    }
-    
-    public void seleccionCategoriaProducto()
-    {
-        int opcion = lector.leerNumero("Escoja en que categoria desea realizar su compra", 1, 4);
-        
-        switch(opcion)
-        {
-            case 1: seleccionarHogar();        break;
-            case 2: seleccionarElectrohogar(); break;
-            case 3: seleccionarJardin();       break;
-            case 4: seleccionarFerreteria();   break;
-            
-        }
-    }
-    
-    
-      
-    
-      
-      
+   
 }
  
 

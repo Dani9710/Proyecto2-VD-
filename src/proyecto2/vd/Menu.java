@@ -20,12 +20,19 @@ public class Menu
         System.out.println("5: Consultar Descuentos");
     }
     
-    static void mostrarMenuPago() {
+    public static void mostrarMenuPago() {
         
         System.out.println("1: Cheque");
         System.out.println("2: Credito");
         System.out.println("3: Debito");
         System.out.println("4: Efectivo");
         
+    }
+    
+    public static void menuSeguirComprando()
+    {
+        System.out.println("¿Desea continuar comprando mas de nuestros productos?");
+        System.out.println("[1]Si");
+        System.out.println("[0]No");
     }
 }

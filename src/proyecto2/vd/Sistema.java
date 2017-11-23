@@ -38,19 +38,7 @@ public class Sistema
         this.catalogoProductos = lector.cargarArchivo();
         
     }
-//    
-//    public void mostrarCategorias()
-//    {
-//        System.out.println("Hogar: ");
-//        hogar.listarProductos();
-//        System.out.println("Electrohogar: ");
-//        electrohogar.listarProductos();
-//        System.out.println("Jardin: ");
-//        jardin.listarProductos();
-//        System.out.println("Ferreteria: ");
-//        ferreteria.listarProductos();
-//        
-//    }
+    
     public void mostrarProductosCategoria(float numeroCategoria)
     {
         Set<Integer> codigos = this.catalogoProductos.keySet();
@@ -100,11 +88,6 @@ public class Sistema
         return producto; 
     }
     
-    
-    /*public Producto seleccionarProducto(String nombre)
-    {
-        
-    }*/
 
     public int sizeCarritoCompras()
     {
@@ -119,6 +102,50 @@ public class Sistema
     public Producto removeProducto(int index)
     {
         return carritoCompras.remove(index);
+    }
+    
+    public Carro obtenerCotizacionCodigo(int codigo)
+    {
+        Carro c = this.cotizaciones.get(codigo);
+        return c; 
+    }
+    
+    public ArrayList<Producto> agregarProductosCarritoDeCotizaciones(int codigo)
+    { 
+        boolean continuar = true; 
+        ArrayList<Producto> productos = new ArrayList<Producto>();
+        while(continuar)
+        {
+            Producto producto = seleccionarProducto(codigo);
+            productos.add(producto);
+            Menu.menuSeguirComprando();
+            continuar = seguirComprando();
+            
+        }
+        
+        return productos; 
+    }
+    
+    public 
+        
+    
+    public boolean seguirComprando()
+    {
+        boolean continuar = true; 
+        
+        int opcion = lector.leerNumero("Ingrese su opcion");
+        
+        if(opcion == 1)
+        {
+            continuar = true;
+        }
+        
+        else
+        {
+            continuar = false;
+        }
+        
+        return continuar; 
     }
    
     
@@ -142,6 +169,11 @@ public class Sistema
         }
         
     }*/
+    
+    public void verificarCotizacion()
+    {
+        
+    }
 
     public void eliminarCotizacion()
     {
@@ -192,7 +224,7 @@ public class Sistema
         for (Integer c : codigos)
         {
             Producto p = this.catalogoProductos.get(c);
-            System.out.println(p.getCodigo() + "t" + p.getNombre());
+            System.out.println(p.getCodigo() + "\t" + p.getNombre());
         }
     }
     
