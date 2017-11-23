@@ -21,7 +21,7 @@ public class Sistema
     private Categoria hogar; 
     private Categoria electrohogar;
     private HashMap<Integer, Producto> catalogoProductos;
-    private ArrayList<Cotizacion> cotizaciones; 
+    private HashMap<Integer, Carro> cotizaciones; 
     private ArrayList<Producto> carritoCompras; 
     private Lector lector; 
 
@@ -31,7 +31,7 @@ public class Sistema
         this.hogar = new Hogar();
         this.ferreteria = new Ferreteria();
         this.electrohogar = new Electrohogar();*/
-        this.cotizaciones = new ArrayList<Cotizacion>();
+        this.cotizaciones = new HashMap<Integer, Carro>();
         this.carritoCompras = new ArrayList<Producto>();
         this.lector = new Lector(); 
         this.catalogoProductos = lector.cargarArchivo();
@@ -110,28 +110,11 @@ public class Sistema
     {
         return carritoCompras.remove(index);
     }
-    
-    
-    public void seleccionarProducto()
-    {
-        int codigo; 
-        System.out.println("Escriba Nombre Producto:   ");
-        codigo = p.buscarProducto();
-        if(nombre.isEqualto.codigo){
-
-        System.out.println("Producto encontrado");
-
-        }
-        else{
-
-        System.out.println("Producto No encontrado");
-
-        }
-    } 
+   
     
     
    // Niko
-    public void preguntarCotizacion()
+    /*public void preguntarCotizacion()
     {
         boolean cotizacion;
         cotizacion = validar.isValidacion();
@@ -148,7 +131,7 @@ public class Sistema
             
         }
         
-    }
+    }*/
 
     public void eliminarCotizacion()
     {

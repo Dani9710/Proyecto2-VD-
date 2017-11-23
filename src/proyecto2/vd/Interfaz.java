@@ -115,7 +115,7 @@ public class Interfaz
         {
             codigo = lector.leerNumero("Ingrese el codigo del producto que desea comprar");
         
-            Producto producto = sistema.pedirProducto(codigo);
+            Producto producto = sistema.seleccionarProducto(codigo);
             sistema.addCarrito(producto);
             continuar = seguirComprando();
             pagoTotal = pagoTotal + producto.getPrecio();

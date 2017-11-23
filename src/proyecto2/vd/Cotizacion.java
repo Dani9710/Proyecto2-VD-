@@ -11,7 +11,7 @@ import java.util.Calendar;
  *
  * @author Danii
  */
-public class Cotizacion extends Boleta
+public class Cotizacion extends Carro
 {
     private Calendar fechaTermino; 
     private boolean validacion; 
