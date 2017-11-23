@@ -53,40 +53,36 @@ public class Sistema
 //    }
     public void mostrarProductosCategoria(float numeroCategoria)
     {
-        Set<Integer> codigos = catalogoProductos.keySet();
+        Set<Integer> codigos = this.catalogoProductos.keySet();
         
-        for (Integer codigo : codigos){
-            Producto p = catalogoProductos.get(codigo);
+        for (Integer codigo : codigos)
+        {
+            Producto p = this.catalogoProductos.get(codigo);
             if(numeroCategoria < p.getCategoria() && numeroCategoria > (p.getCategoria()+1))
             {
-                System.out.println(p.getCodigo() + "\t" + p.getNombre() + "\t" + p.getPrecio());
+                System.out.println(p.getCategoria()+ "\t" + p.getCodigo() + "\t" + p.getNombre() + "\t" + p.getPrecio());
             }
         }
-        
-        
-    }
-    public void mostrarHogar()
-    {
-//        System.out.println("Hogar: ");
-//        hogar.listarProductos();  
-    }
-    public void mostrarElectrohogar()
-    {
-//        System.out.println("Electrohogar: ");
-//        electrohogar.listarProductos(); 
-    }
-    public void mostrarJardin()
-    {
-//        System.out.println("Jardin: ");
-//        jardin.listarProductos();
-    }
-    public void mostrarFerreteria()
-    {
-//        System.out.println("Ferreteria: ");
-//        ferreteria.listarProductos();   
     }
     
-    public void imprimirProductos()
+    public void mostrarProductoPorCodigo(int codigo)
+    {
+        Set<Integer> codigos = this.catalogoProductos.keySet();
+    
+        for (Integer c : codigos)
+        {
+            Producto p = this.catalogoProductos.get(c);
+            
+            if(c == codigo )
+            {
+                System.out.println(p.getCategoria()+ "\t" + p.getCodigo() + "\t" + p.getNombre() + "\t" + p.getPrecio());
+            }
+        }
+    }
+        
+         
+    
+    public void imprimirCatalogoProductos()
     {
         Iterator i = this.catalogoProductos.entrySet().iterator();
         
