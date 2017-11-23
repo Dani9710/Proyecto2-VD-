@@ -1,0 +1,34 @@
+1.1 123456 Baño 100000
+1.2 789012 Cocina 150000
+1.3 123098 Iluminacion 40000
+1.4 234987 Menaje 50000
+1.5 345876 Muebles 120000
+1.6 543908 Decoracion 80000
+1.7 654789 Textil 100000
+2.1 765234 Calefaccion 200000
+2.2 867485 Ventilacion 130000
+2.3 908123 AireAcondicionado 200000
+2.4 042315 Electrodomesticos 150000
+2.5 245098 Electronica Y Computacion 125000
+2.6 328923 Linea Blanca 90000
+3.1 432980 Plantas 25000
+3.2 512098 Fertilizantes 15000
+3.3 621758 Riego 8000
+3.4 730184 Muebles 400000
+3.5 823109 Parrillas 42000
+3.6 932809 Piscinas 400000
+3.7 021432 Herramientas 35000 
+4.1 198320 Pintura 20000
+4.2 290532 Electricidad 50000
+4.3 383410 Gasfiteria 84000
+4.4 481023 Herramientas 120000
+4.5 508912 Maquinaria 400000
+4.6 629104 Construccion 350000
+2.5 149823 Consolas 200000
+3.6 461981 PiscinaArmable 100000
+3.4 472491 Muebles Sillas 40000
+4.5 391248 Maquinaria Pesada 650000
+2.5 072352 Telefonos 120000
+4.1 163291 Pintura Impermeable 38000
+1.6 927592 Decoracion Rustica 100000
+1.1 813280 BañoLujo 200000
