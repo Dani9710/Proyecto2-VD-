@@ -26,7 +26,7 @@ public class Interfaz
         
         System.out.println("Bienvenido a la tienda!");
         Menu.mostrarMenuPrincipal();
-        int opcion = lector.leerNumero("Ingresa opcion", 1, 5);
+        int opcion = lector.leerNumero("Ingresa opcion", 1, 6);
         
         while( opcion != 0 )
         {
@@ -43,23 +43,24 @@ public class Interfaz
             
             switch( opcion )
             {
-                
-                case 1: consultarProductos();
+                case 1: mostrarCodigos();
                         break;
-                case 2: generarCotizacion();
+                case 2: consultarProductos();
                         break;
-                case 3: efectuarCompraConCotizacion();
+                case 3: generarCotizacion();
                         break;
-                case 4: efectuarCompraNormalmente();
+                case 4: efectuarCompraConCotizacion();
                         break;
-                case 5: consultarDescuentos();
+                case 5: efectuarCompraNormalmente();
+                        break;
+                case 6: consultarDescuentos();
                         break;
                 
             }
            
             
             Menu.mostrarMenuPrincipal();
-            opcion = lector.leerNumero("Ingresa opcion", 1, 5);
+            opcion = lector.leerNumero("Ingresa opcion", 1, 6);
 
         }
         
@@ -67,8 +68,18 @@ public class Interfaz
       }
     
         
-    
+
+      public void mostrarCodigos()
+      {
+          sistema.mostrarCodigos();
+      }
         
+      
+      
+      
+      
+      
+      
     public void consultarProductos()
     {
 
@@ -135,13 +146,15 @@ public class Interfaz
     
     public void consultarPorCodigo()
     {
-        
+        int codigo = lector.leerNumero("Ingrese codigo de producto: ");
+        sistema.mostrarProductoPorCodigo(codigo);
         
     }
     
     public void consultarPorCategoria()
     {
-        //sistema.mostrarCategorias();
+        float opcion = lector.leerNumero("Escoja categoria:  \n1. Hogar \n2.Electrohogar \n3.Jardin \n4.Ferreteria", 1,4);
+        sistema.mostrarProductosCategoria(opcion);
     }
     
     public Pago pagarCompra()
