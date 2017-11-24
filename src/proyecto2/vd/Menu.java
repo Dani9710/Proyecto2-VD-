@@ -11,6 +11,7 @@ package proyecto2.vd;
  */
 public class Menu
 {
+    
     public static void mostrarMenuPrincipal()
     {
         System.out.println("1: Mostrar productos");
@@ -19,6 +20,7 @@ public class Menu
         System.out.println("4: Efectuar compra con cotizacion");
         System.out.println("5: Efectuar compra normalmente");
         System.out.println("6: Consultar descuentos");
+        System.out.println("0: Salir del programa");
     }
     
     public static void mostrarMenuPago() {

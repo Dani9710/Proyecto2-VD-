@@ -22,10 +22,8 @@ public class Interfaz
 
     public void iniciar()
     {
+        deserializar();
         
-        //falta deserializar
-        
-        //sistema.deserializar();
         eliminarCotizacionesExpiradas();
         System.out.println("Bienvenido a la tienda!");
         Menu.mostrarMenuPrincipal();
@@ -33,16 +31,6 @@ public class Interfaz
         
         while( opcion != 0 )
         {
-            
-            //Orden de funcionalidades//
-            
-            
-            //Consultar productor //por codigo //por categoria
-            //Generar Cotizacion
-            //Efectuar compra apartir de su cotizacion //Pagar una compra
-            //Efectuar compra normalmente //Pagar una compra
-            //Consultar descuentos
-            
             
             switch(opcion)
             {
@@ -58,15 +46,35 @@ public class Interfaz
                         break;
                 case 6: consultarDescuentos();
                         break;
-                
+                case 0: opcion = 0;
+                        break;
             }
-            
-            Menu.mostrarMenuPrincipal();
-            opcion = lector.leerNumero("Ingresa opcion", 1, 6);
+            serializar();
+
+            if(opcion != 0)
+            {
+                Menu.mostrarMenuPrincipal();
+                opcion = lector.leerNumero("Ingresa opcion", 1, 6);
+            }
 
         }
         
       }
+    
+    public void serializar()
+    {
+        sistema.serializarHashMapCarritos();
+        sistema.serializarHashMapCatalogoProductos();
+        sistema.serializarHashSetNumerosCotizacionesGenerados();
+    }
+    
+    public void deserializar()
+    {
+        sistema.deserializarHashMapCarritos();
+        sistema.deserializarHashMapCatalogoProductos();
+        sistema.deserializarHashSetNumerosCotizacionesGenerados();
+    }
+    
     
     public void mostrarCodigos()
     {
@@ -229,9 +237,6 @@ public class Interfaz
         Carrito cotizacion = crearCotizacion();
         
     }
-    //validarCotizacion(cotizacion);
-    
-    //
     
     public Carrito crearCotizacion()
     {
@@ -247,9 +252,9 @@ public class Interfaz
             continuar = seguirAgregandoProductos();
         }
         int codigoCotizacion = generarNumerosAleatoriosSinRepetir();
-         
         Carrito cotizacion = new Cotizacion(false, productos, codigoCotizacion);
         sistema.put(codigoCotizacion, cotizacion);
+        System.out.println("El codigo de la cotizacion generada es: " + codigoCotizacion);
         return cotizacion;
     }   
      

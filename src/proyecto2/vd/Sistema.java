@@ -5,8 +5,10 @@
  */
 package proyecto2.vd;
 
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -240,6 +242,159 @@ public class Sistema
             }
         }     
     } 
+    
+    
+    public void serializarHashMapCatalogoProductos()
+    {
+           try
+           {
+                FileOutputStream fos = new FileOutputStream("catalogoProductos.ser");
+                ObjectOutputStream oos = new ObjectOutputStream(fos);
+                oos.writeObject(this.catalogoProductos);
+                oos.close();
+                fos.close();
+                System.out.printf("El HashMap catalogoProductos fue serializado en catalogoProductos.ser con exito!");
+           }
+           catch(IOException ioe)
+           {
+                ioe.printStackTrace();
+           }
+    }
+    
+    public void serializarHashMapCarritos()
+    {
+           try
+           {
+                FileOutputStream fos = new FileOutputStream("carritos.ser");
+                ObjectOutputStream oos = new ObjectOutputStream(fos);
+                oos.writeObject(this.carritos);
+                oos.close();
+                fos.close();
+                System.out.printf("El HashMap carritos fue serializado en carritos.ser con exito!");
+           }
+           catch(IOException ioe)
+           {
+                ioe.printStackTrace();
+           }
+    }
+    
+    public void serializarHashSetNumerosCotizacionesGenerados()
+    {
+           try
+           {
+                FileOutputStream fos = new FileOutputStream("numerosCotizacionesGenerados.ser");
+                ObjectOutputStream oos = new ObjectOutputStream(fos);
+                oos.writeObject(this.numerosCotizacionGenerados);
+                oos.close();
+                fos.close();
+                System.out.printf("El HashSet numerosCotizacionesGenerados fue serializado en numerosCotizacionesGenerados.ser con exito!");
+           }
+           catch(IOException ioe)
+           {
+                ioe.printStackTrace();
+           }
+    }
+    
+    
+    public void deserializarHashMapCatalogoProductos()
+    {
+        this.catalogoProductos = null;
+        try
+        {
+           FileInputStream fis = new FileInputStream("catalogoProductos.ser");
+           ObjectInputStream ois = new ObjectInputStream(fis);
+           this.catalogoProductos = (HashMap) ois.readObject();
+           ois.close();
+           fis.close();
+        }
+        catch(IOException ioe)
+        {
+           ioe.printStackTrace();
+           return;
+        }
+        catch(ClassNotFoundException c)
+        {
+           System.out.println("Class not found");
+           c.printStackTrace();
+           return;
+        }
+        System.out.println("Se deserializo el HashMap catalogoProductos con exito!");
+    }
+          
+    public void deserializarHashMapCarritos()
+    {
+        this.carritos = null;
+        try
+        {
+           FileInputStream fis = new FileInputStream("carritos.ser");
+           ObjectInputStream ois = new ObjectInputStream(fis);
+           this.carritos = (HashMap) ois.readObject();
+           ois.close();
+           fis.close();
+        }
+        catch(IOException ioe)
+        {
+           ioe.printStackTrace();
+           return;
+        }
+        catch(ClassNotFoundException c)
+        {
+           System.out.println("Class not found");
+           c.printStackTrace();
+           return;
+        }
+        System.out.println("Se deserializo el HashMap carritos con exito!");
+    }
+          
+    
+    
+    public void deserializarHashSetNumerosCotizacionesGenerados()
+    {
+        this.numerosCotizacionGenerados = null;
+        try
+        {
+           FileInputStream fis = new FileInputStream("numerosCotizacionesGenerados.ser");
+           ObjectInputStream ois = new ObjectInputStream(fis);
+           this.numerosCotizacionGenerados = (HashSet) ois.readObject();
+           ois.close();
+           fis.close();
+        }
+        catch(IOException ioe)
+        {
+           ioe.printStackTrace();
+           return;
+        }
+        catch(ClassNotFoundException c)
+        {
+           System.out.println("Class not found");
+           c.printStackTrace();
+           return;
+        }
+        System.out.println("Se deserializo el HashSet numerosCotizacionesGenerados con exito!");
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     public void serializar(String nombre)
     {
