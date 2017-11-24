@@ -28,6 +28,13 @@ public class Menu
         System.out.println("4: Efectivo");
         
     }
+    public static void mostrarDescuentos() {
+        
+        System.out.println("Cheque: No tiene descuento");
+        System.out.println("Credito: No tiene descuento");
+        System.out.println("Debito: Tiene 5% de descuento");
+        System.out.println("Efectivo: Tiene 10% de descuento");
+    }
     
     public static void menuSeguirComprando()
     {
@@ -36,4 +43,6 @@ public class Menu
         System.out.println("[0]No");
     
     }
+    
+    
 }
