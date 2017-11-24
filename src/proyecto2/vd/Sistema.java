@@ -98,21 +98,53 @@ public class Sistema
         return carritoCompras.remove(index);
     }
     
-    public Carro obtenerCotizacionCodigo(int codigo)
+    
+    
+    public Carro obtenerCotizacion(Carro c)
+    {
+        //Carro c = this.cotizaciones.get(codigo);
+        boolean validacion = isCotizacion(c);
+        if(validacion == false)
+        {
+            c = validarCotizacion(c);
+            
+        }
+        else
+            System.out.println("Esta cotizacion ya esta validada");
+        return c;
+    }
+    
+    public Carro obtenerCotizacionPorCodigo(int codigo)
     {
         Carro c = this.cotizaciones.get(codigo);
+        return c;
+    }
+    
+    
+    
+    public boolean isCotizacion(Carro c)
+    {
+        if(c instanceof Cotizacion)
+            return true;
+        else
+            return false;
+    }
+    
+   
+    public Carro validarCotizacion(Carro c)
+    {
         if(c instanceof Cotizacion)
         {
-            return c; 
+            ((Cotizacion) c).setValidacion(true);
+            System.out.println("Esta cotizacion se validó con exito");
         }
-    }
-    public void validarCotizacion(int codigo)
-    {
-        Carro carrito = obtenerCotizacionCodigo(codigo);
-        boolean validacion = true; 
-        carrito.setValidacion(validacion);
         
+        return c;
     }
+    
+    
+    
+    
     public ArrayList<Producto> agregarProductosCarritoDeCotizaciones(int codigo, ArrayList<Producto> productos)
     { 
         Producto producto = seleccionarProducto(codigo);

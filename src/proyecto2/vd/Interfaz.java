@@ -113,15 +113,34 @@ public class Interfaz
             
         }
         
+        pagarCompra(pagoTotal);
         
-        Pago pago = pagarCompra();
+        
         
     }
     
+    public void efectuarCompraConCotizacion()
+    {
+        int codigo = lector.leerNumero("Ingrese codigo de cotizacion: ");
+        Carro cotizacion = sistema.obtenerCotizacionPorCodigo(codigo);
+        validarCotizacion(cotizacion);
+        ArrayList<Producto> compras = cotizacion.getProductos();
+        int pagoTotal = 0;
+        for(Producto actual: compras)
+        {
+            pagoTotal = pagoTotal + actual.getPrecio();
+        }
+        pagarCompra(pagoTotal);
+        
+    }
+    
+    
+    
+    
+    
     public void consultarDescuentos()
     {
-        
-        
+        Menu.mostrarDescuentos();
     }
     
     public void consultarPorCodigo()
@@ -137,41 +156,45 @@ public class Interfaz
         sistema.mostrarProductosCategoria(opcion);
     }
     
-    public Pago pagarCompra()
-    {
-        Pago pago = null; 
-        int opcion = lector.leerNumero("Escoja el medio de pago con el que desea realizar su compra", 1,4);
-        
-        switch(opcion)
-        {
-            case 1: pago = Pago.DEBITO;    break;
-            case 2: pago = Pago.EFECTIVO;  break;
-            case 3: pago = Pago.CHEQUE;    break;
-            case 4: pago = Pago.CREDITO;   break;
-            
-        }
-        
-        return pago; 
-    }
+    
+    
     
     public void generarCotizacion()
     {
+        Carro cotizacion = crearCotizacion();
         
-        int codigo = lector.leerNumero("Ingrese codigo del producto que desea cotizar");
+    }
+    //validarCotizacion(cotizacion);
+    
+    //
+    
+    public Carro crearCotizacion()
+    {
+        
+        int codigoProducto = lector.leerNumero("Ingrese codigo del producto que desea cotizar");
         ArrayList<Producto> productos = new ArrayList<Producto>();
         boolean continuar = true; 
         while(continuar)
         {
-            productos = sistema.agregarProductosCarritoDeCotizaciones(codigo, productos);
+            productos = sistema.agregarProductosCarritoDeCotizaciones(codigoProducto, productos);
             
             Menu.menuSeguirComprando();
             seguirAgregandoProductos();
         }
+        ////////////////// GENERAR NUMEROS RANDOM NO REPITA
+        /////////////////METODO DISTINTO
+        int codigoCotizacion = 0; /////METODO RANDOM
         
-        Carro cotizacion = new Cotizacion(false, productos);
-        sistema.put(codigo, cotizacion);
-        
+        Carro cotizacion = new Cotizacion(false, productos, codigoCotizacion);
+        sistema.put(codigoCotizacion, cotizacion);
+        return cotizacion;
     }   
+    
+    public void validarCotizacion(Carro c)
+    {
+        sistema.obtenerCotizacion(c);
+        
+    }
     
     /////////Pago: dar como parametro el precio
     public void pagarCompra(int totalPago)
