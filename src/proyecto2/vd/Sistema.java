@@ -5,11 +5,16 @@
  */
 package proyecto2.vd;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 /**
  *
@@ -20,12 +25,14 @@ public class Sistema
     private HashMap<Integer, Producto> catalogoProductos;
     private HashMap<Integer, Carrito> carritos; 
     private Lector lector;
+    private Set<Integer> numerosCotizacionGenerados;
 
     public Sistema()
     {
         this.carritos = new HashMap<Integer, Carrito>();
         this.lector = new Lector(); 
         this.catalogoProductos = lector.cargarArchivo();
+        this.numerosCotizacionGenerados = new HashSet<Integer>();
         
     }
     
@@ -234,8 +241,40 @@ public class Sistema
         }     
     } 
     
-    public void serializar()
+    public void serializar(String nombre)
     {
+        Carrito c = new Cotizacion();
         
+        try {
+            FileOutputStream fileOut = new FileOutputStream(nombre);
+            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            out.writeObject(c);
+            out.close();
+            fileOut.close();
+            System.out.printf("Serialized data is saved in " + nombre);
+        } 
+        
+        catch (IOException i)
+        {
+            i.printStackTrace();
+        }
+    }
+    
+    public int generarNumerosAleatoriosSinRepetir()
+    {
+        Random rnd = new Random();
+        int aleatorio = -1;
+        boolean generado = false;
+        while (!generado)
+        {
+            int posible = rnd.nextInt();
+            if (!this.numerosCotizacionGenerados.contains(posible)) 
+            {
+                this.numerosCotizacionGenerados.add(posible);
+                aleatorio = posible;
+                generado = true;
+            }
+        }
+        return aleatorio;
     }
 }

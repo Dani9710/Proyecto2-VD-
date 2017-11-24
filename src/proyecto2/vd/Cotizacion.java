@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package proyecto2.vd;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -11,7 +12,7 @@ import java.util.Calendar;
  *
  * @author Danii
  */
-public class Cotizacion extends Carrito
+public class Cotizacion extends Carrito implements Serializable
 {
     private Calendar fechaTermino; 
     private boolean validacion; 
@@ -24,6 +25,11 @@ public class Cotizacion extends Carrito
         this.fechaTermino.add(Calendar.WEEK_OF_MONTH, 1);
         this.validacion = validacion;
         this.codigo = codigo; 
+    }
+    
+    public Cotizacion()
+    {
+    
     }
 
     

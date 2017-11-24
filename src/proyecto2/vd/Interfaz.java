@@ -23,7 +23,7 @@ public class Interfaz
     public void iniciar()
     {
         
-        //falta deserializar y cargar al iniciar programa
+        //falta deserializar
         
         //sistema.deserializar();
         eliminarCotizacionesExpiradas();
@@ -44,7 +44,7 @@ public class Interfaz
             //Consultar descuentos
             
             
-            switch( opcion )
+            switch(opcion)
             {
                 case 1: mostrarCodigos();
                         break;
@@ -235,25 +235,29 @@ public class Interfaz
     
     public Carrito crearCotizacion()
     {
-        
+         
         int codigoProducto = lector.leerNumero("Ingrese codigo del producto que desea cotizar");
         ArrayList<Producto> productos = new ArrayList<Producto>();
         boolean continuar = true; 
         while(continuar)
         {
             productos = sistema.agregarProductosCarritoDeCotizaciones(codigoProducto, productos);
-            
+             
             Menu.menuSeguirComprando();
             continuar = seguirAgregandoProductos();
         }
-        ////////////////// GENERAR NUMEROS RANDOM NO REPITA
-        /////////////////METODO DISTINTO
-        int codigoCotizacion = 0; /////METODO RANDOM
-        
+        int codigoCotizacion = generarNumerosAleatoriosSinRepetir();
+         
         Carrito cotizacion = new Cotizacion(false, productos, codigoCotizacion);
         sistema.put(codigoCotizacion, cotizacion);
         return cotizacion;
     }   
+     
+    public int generarNumerosAleatoriosSinRepetir()
+    {
+        int aleatorio = sistema.generarNumerosAleatoriosSinRepetir();
+        return aleatorio;
+    }
     
     public void validarCotizacion(Carrito c)
     {

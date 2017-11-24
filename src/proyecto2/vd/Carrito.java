@@ -15,7 +15,7 @@ import java.util.Calendar;
  */
 ///sdkjsdkjsdkjsdkjsd XD
 ///SJDKSJDKJSDo9
-public abstract class Carrito implements Serializable
+public abstract class Carrito
 {
     protected ArrayList<Producto> productos;
     protected Calendar fechaInicio;
