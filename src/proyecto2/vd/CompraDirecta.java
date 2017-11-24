@@ -11,7 +11,7 @@ import java.util.ArrayList;
  *
  * @author Danii
  */
-public class CompraDirecta extends Carro
+public class CompraDirecta extends Carrito
 {
 
     public CompraDirecta(ArrayList<Producto> productos)

@@ -87,7 +87,7 @@ public class Interfaz
         
     } 
     
-    public Carro generarCompraDirecta()
+    public Carrito generarCompraDirecta()
     {
         ///////// Compra directa***
         
@@ -104,7 +104,7 @@ public class Interfaz
             continuar = seguirAgregandoProductos();            
         }
         
-        Carro compraDirecta = new CompraDirecta(productos);
+        Carrito compraDirecta = new CompraDirecta(productos);
         
         return compraDirecta; 
         
@@ -112,7 +112,7 @@ public class Interfaz
     
     public void efectuarCompraNormalmente()
     {
-        Carro c = generarCompraDirecta();
+        Carrito c = generarCompraDirecta();
         ArrayList<Producto> productos = c.getProductos();
         
         int total = sumarTotalAPagar(productos);
@@ -124,7 +124,7 @@ public class Interfaz
     public void efectuarCompraConCotizacion()
     {
         int codigo = lector.leerNumero("Ingrese codigo de cotizacion: ");
-        Carro cotizacion = sistema.obtenerCotizacionPorCodigo(codigo);
+        Carrito cotizacion = sistema.obtenerCotizacionPorCodigo(codigo);
         validarCotizacion(cotizacion);
         ArrayList<Producto> productos = cotizacion.getProductos();
         int pagoTotal = sumarTotalAPagar(productos);
@@ -148,7 +148,7 @@ public class Interfaz
     }
     
     
-    public void generarBoleta(Carro c)
+    public void generarBoleta(Carrito c)
     {
         mostrarFecha(c);
         mostrarProductos(c.getProductos());
@@ -156,7 +156,7 @@ public class Interfaz
         System.out.println("Total compra: $" + total);
     }
     
-    public void mostrarFecha(Carro c)
+    public void mostrarFecha(Carrito c)
     {
         Calendar fecha = c.getFechaInicio();
         int dia = fecha.get( Calendar.DAY_OF_MONTH );
@@ -226,14 +226,14 @@ public class Interfaz
     
     public void generarCotizacion()
     {
-        Carro cotizacion = crearCotizacion();
+        Carrito cotizacion = crearCotizacion();
         
     }
     //validarCotizacion(cotizacion);
     
     //
     
-    public Carro crearCotizacion()
+    public Carrito crearCotizacion()
     {
         
         int codigoProducto = lector.leerNumero("Ingrese codigo del producto que desea cotizar");
@@ -250,12 +250,12 @@ public class Interfaz
         /////////////////METODO DISTINTO
         int codigoCotizacion = 0; /////METODO RANDOM
         
-        Carro cotizacion = new Cotizacion(false, productos, codigoCotizacion);
+        Carrito cotizacion = new Cotizacion(false, productos, codigoCotizacion);
         sistema.put(codigoCotizacion, cotizacion);
         return cotizacion;
     }   
     
-    public void validarCotizacion(Carro c)
+    public void validarCotizacion(Carrito c)
     {
         sistema.obtenerCotizacion(c);
         

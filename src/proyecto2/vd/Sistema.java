@@ -18,12 +18,12 @@ import java.util.Set;
 public class Sistema
 {
     private HashMap<Integer, Producto> catalogoProductos;
-    private HashMap<Integer, Carro> carritos; 
+    private HashMap<Integer, Carrito> carritos; 
     private Lector lector;
 
     public Sistema()
     {
-        this.carritos = new HashMap<Integer, Carro>();
+        this.carritos = new HashMap<Integer, Carrito>();
         this.lector = new Lector(); 
         this.catalogoProductos = lector.cargarArchivo();
         
@@ -78,7 +78,7 @@ public class Sistema
         return producto; 
     }
     
-    public Carro obtenerCotizacion(Carro c)
+    public Carrito obtenerCotizacion(Carrito c)
     {
         //Carro c = this.cotizaciones.get(codigo);
         boolean validacion = isCotizacion(c);
@@ -92,13 +92,13 @@ public class Sistema
         return c;
     }
     
-    public Carro obtenerCotizacionPorCodigo(int codigo)
+    public Carrito obtenerCotizacionPorCodigo(int codigo)
     {
-        Carro c = this.carritos.get(codigo);
+        Carrito c = this.carritos.get(codigo);
         return c;
     }
     
-    public boolean isCotizacion(Carro c)
+    public boolean isCotizacion(Carrito c)
     {
         if(c instanceof Cotizacion)
             return true;
@@ -106,7 +106,7 @@ public class Sistema
             return false;
     }
     
-    public Carro validarCotizacion(Carro c)
+    public Carrito validarCotizacion(Carrito c)
     {
         if(c instanceof Cotizacion)
         {
@@ -130,12 +130,12 @@ public class Sistema
         return carritos.size();
     }
 
-    public Carro put(Integer key, Carro value)
+    public Carrito put(Integer key, Carrito value)
     {
         return carritos.put(key, value);
     }
 
-    public Carro remove(Object key)
+    public Carrito remove(Object key)
     {
         return carritos.remove(key);
     }
@@ -223,7 +223,7 @@ public class Sistema
     
         for (Integer code : codigos)
         {
-            Carro c = this.carritos.get(code);
+            Carrito c = this.carritos.get(code);
             if(c instanceof Cotizacion)
             {
                 if(hoy.compareTo( ((Cotizacion) c).getFechaTermino() ) == 0)
@@ -233,4 +233,9 @@ public class Sistema
             }
         }     
     } 
+    
+    public void serializar()
+    {
+        
+    }
 }
