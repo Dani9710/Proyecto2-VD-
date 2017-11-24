@@ -9,10 +9,16 @@ package proyecto2.vd;
  *
  * @author Danii
  */
-public enum Categoria
+public class Main
 {
-    HOGAR,
-    JARDIN,
-    ELECTROHOGAR,
-    FERRETERIA; 
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args)
+    {
+        Interfaz interfaz = new Interfaz();
+        interfaz.iniciar();
+    }
+    
 }

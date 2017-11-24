@@ -13,11 +13,12 @@ public class Menu
 {
     public static void mostrarMenuPrincipal()
     {
-        System.out.println("1: Consultar productos");
-        System.out.println("2: Cotizar productos");
-        System.out.println("3: Comprar prodcutos con cotizacion");
-        System.out.println("4: Comprar productos normalmente");
-        System.out.println("5: Consultar Descuentos");
+        System.out.println("1: Mostrar productos");
+        System.out.println("2: Consultar productos");
+        System.out.println("3: Generar cotizacion");
+        System.out.println("4: Efectuar compra con cotizacion");
+        System.out.println("5: Efectuar compra normalmente");
+        System.out.println("6: Consultar descuentos");
     }
     
     public static void mostrarMenuPago() {
@@ -42,6 +43,13 @@ public class Menu
         System.out.println("[1]Si");
         System.out.println("[0]No");
     
+    }
+    
+    public static void consultarProductos()
+    {
+        System.out.println("1: Codigo");
+        System.out.println("2: Categoria");
+
     }
     
     

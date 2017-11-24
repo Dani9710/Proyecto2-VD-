@@ -74,8 +74,8 @@ public class Interfaz
     }
     public void consultarProductos()
     {
-
-        int opcion = lector.leerNumero("1 para consultar por codigo, 2 para consultar por categoria: ", 1, 2);
+        Menu.consultarProductos();
+        int opcion = lector.leerNumero("Ingrese el numero de lo que desea consultar", 1, 2);
         if(opcion == 1)
         {
             consultarPorCodigo();
@@ -87,7 +87,7 @@ public class Interfaz
         
     } 
     
-    public Carro efectuarCompraNormalmente()
+    public Carro generarCompraDirecta()
     {
         ///////// Compra directa***
         
@@ -110,9 +110,9 @@ public class Interfaz
         
     }
     
-    public void pagarCompraDirecta()
+    public void efectuarCompraNormalmente()
     {
-        Carro c = efectuarCompraNormalmente();
+        Carro c = generarCompraDirecta();
         ArrayList<Producto> productos = c.getProductos();
         
         int total = sumarTotalAPagar(productos);
@@ -244,7 +244,7 @@ public class Interfaz
             productos = sistema.agregarProductosCarritoDeCotizaciones(codigoProducto, productos);
             
             Menu.menuSeguirComprando();
-            seguirAgregandoProductos();
+            continuar = seguirAgregandoProductos();
         }
         ////////////////// GENERAR NUMEROS RANDOM NO REPITA
         /////////////////METODO DISTINTO
@@ -271,14 +271,14 @@ public class Interfaz
     {
         boolean continuar = true; 
         
-        int opcion = lector.leerNumero("Ingrese su opcion");
+        int opcion = lector.leerNumero("Ingrese su opcion", 0, 1);
         
         if(opcion == 1)
         {
             continuar = true;
         }
         
-        else
+        if(opcion == 0)
         {
             continuar = false;
         }

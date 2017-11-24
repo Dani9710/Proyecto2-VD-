@@ -5,11 +5,13 @@
  */
 package proyecto2.vd;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Danii
  */
-public class Producto
+public class Producto implements Serializable
 {
     int precio; 
     String nombre;

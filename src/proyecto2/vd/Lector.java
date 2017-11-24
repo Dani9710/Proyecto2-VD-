@@ -7,7 +7,6 @@ package proyecto2.vd;
 
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -124,24 +123,23 @@ public class Lector
     
     public HashMap<Integer, Producto> cargarArchivo()
     {
-        HashMap productos = new HashMap<Integer, Producto>();
+        HashMap<Integer, Producto> productos = new HashMap<Integer, Producto>();
         
         try
         {
-            Scanner scanner = new Scanner(new File("Proyecto2.txt"));
-            while(scanner.hasNextLine())
+            Scanner sc = new Scanner(new File("Proyecto2.txt"));
+            while(sc.hasNextLine())
             {
-                String linea = scanner.nextLine();
+                System.out.println("LEYENDO");
+                String linea = sc.nextLine().trim();
                 int indiceEspacio = linea.indexOf(' ');
                 float categoria = Float.parseFloat(linea.substring(0, indiceEspacio));
                 linea = linea.substring(indiceEspacio + 1);
                 indiceEspacio = linea.indexOf(' ');
                 int codigo = Integer.parseInt(linea.substring(0, indiceEspacio));
-                linea = linea.substring(indiceEspacio + 1);
-                indiceEspacio = linea.indexOf(' ');
-                String nombre = linea.substring(0, indiceEspacio);
-                linea = linea.substring(indiceEspacio + 1);
-                int precio = Integer.parseInt(linea);
+                int indiceUltimoEspacio = linea.lastIndexOf(' ');
+                String nombre = linea.substring(indiceEspacio + 1, indiceUltimoEspacio);
+                int precio = Integer.parseInt(linea.substring(indiceUltimoEspacio + 1));
                 
                 Producto p = new Producto(categoria, codigo, nombre, precio);
                 
