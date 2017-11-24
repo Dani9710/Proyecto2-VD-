@@ -99,6 +99,8 @@ public class Interfaz
     
     public void efectuarCompraNormalmente()
     {
+        ///////// Compra directa***
+        
         boolean continuar = true; 
         int codigo = 0;
         int pagoTotal = 0; 
@@ -132,10 +134,16 @@ public class Interfaz
         }
         pagarCompra(pagoTotal);
         
+        generarBoleta(cotizacion);
+        
+        
     }
     
     
-    
+    public void generarBoleta(Carro c)
+    {
+        
+    }
     
     
     public void consultarDescuentos()
