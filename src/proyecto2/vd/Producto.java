@@ -21,6 +21,7 @@ public class Producto
         this.precio = precio;
         this.nombre = nombre;
         this.codigo = codigo; 
+        this.categoria = categoria; 
     }
 
     public int getPrecio()

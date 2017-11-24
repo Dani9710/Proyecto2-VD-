@@ -16,9 +16,9 @@ public class Cotizacion extends Carro
     private Calendar fechaTermino; 
     private boolean validacion; 
 
-    public Cotizacion(boolean validacion)
+    public Cotizacion(boolean validacion, ArrayList<Producto> productos, int numeroCompra)
     {
-        super();
+        super(productos, numeroCompra);
         this.fechaTermino = Calendar.getInstance();
         this.fechaTermino.add(Calendar.WEEK_OF_MONTH, 1);
         this.validacion = validacion;

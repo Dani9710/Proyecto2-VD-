@@ -34,5 +34,6 @@ public class Menu
         System.out.println("¿Desea continuar comprando mas de nuestros productos?");
         System.out.println("[1]Si");
         System.out.println("[0]No");
+    
     }
 }

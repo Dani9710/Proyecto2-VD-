@@ -17,10 +17,6 @@ import java.util.Set;
  */
 public class Sistema
 {
-    private Categoria jardin; 
-    private Categoria ferreteria; 
-    private Categoria hogar; 
-    private Categoria electrohogar;
     private HashMap<Integer, Producto> catalogoProductos;
     private HashMap<Integer, Carro> cotizaciones; 
     private ArrayList<Producto> carritoCompras; 
@@ -28,10 +24,6 @@ public class Sistema
 
     public Sistema()
     {
-       /* this.jardin = new Jardin();
-        this.hogar = new Hogar();
-        this.ferreteria = new Ferreteria();
-        this.electrohogar = new Electrohogar();*/
         this.cotizaciones = new HashMap<Integer, Carro>();
         this.carritoCompras = new ArrayList<Producto>();
         this.lector = new Lector(); 
@@ -109,66 +101,100 @@ public class Sistema
         Carro c = this.cotizaciones.get(codigo);
         return c; 
     }
-    
-    public ArrayList<Producto> agregarProductosCarritoDeCotizaciones(int codigo)
+    public void validarCotizacion(int codigo)
+    {
+        Carro carrito = obtenerCotizacionCodigo(codigo);
+        boolean validacion = true; 
+        carrito.setValidacion(validacion);
+        
+    }
+    public ArrayList<Producto> agregarProductosCarritoDeCotizaciones(int codigo, ArrayList<Producto> productos)
     { 
-        boolean continuar = true; 
-        ArrayList<Producto> productos = new ArrayList<Producto>();
-        while(continuar)
-        {
-            Producto producto = seleccionarProducto(codigo);
-            productos.add(producto);
-            Menu.menuSeguirComprando();
-            continuar = seguirComprando();
-            
-        }
+        Producto producto = seleccionarProducto(codigo);
+        productos.add(producto);
         
         return productos; 
     }
-    
-    public 
-        
-    
-    public boolean seguirComprando()
+
+    public int size()
     {
-        boolean continuar = true; 
-        
-        int opcion = lector.leerNumero("Ingrese su opcion");
-        
-        if(opcion == 1)
+        return cotizaciones.size();
+    }
+
+    public Carro put(Integer key, Carro value)
+    {
+        return cotizaciones.put(key, value);
+    }
+
+    public Carro remove(Object key)
+    {
+        return cotizaciones.remove(key);
+    }
+    
+    public void efectuarCompra(int totalPago)
+    {
+        Pago tipoPago = seleccionarMedioDePago();
+         
+        int totalPagoDescuento = aplicarDescuento(tipoPago, totalPago);
+        System.out.println("Desea pagar $" + totalPagoDescuento + "? n0. No n1. Si");
+        boolean pagoRealizado = lector.leerBoolean();
+        if(pagoRealizado == true)
         {
-            continuar = true;
+            System.out.println("Pago realizado con exito!");
         }
-        
         else
         {
-            continuar = false;
-        }
-        
-        return continuar; 
+            System.out.println("El pago ha sido cancelado.");
+        } 
     }
-   
-    
-    
-   // Niko
-    /*public void preguntarCotizacion()
-    {
-        boolean cotizacion;
-        cotizacion = validar.isValidacion();
-        
-        if(cotizacion == true)
+     
+    public Pago seleccionarMedioDePago()
+    {        
+        System.out.println("Como desea Pagar?: ");
+        Pago pago = null;
+        int opcion = lector.leerNumero("Ingresa opcion", 1, 4);
+         
+        switch(opcion)
         {
-            
-            System.out.println("Existe la cotizacion");   
-            
+             
+            case 1: pago = Pago.CHEQUE;
+            break;
+            case 2: pago = Pago.CREDITO;
+            break;
+            case 3: pago = Pago.DEBITO;
+            break;
+            case 4: pago = Pago.EFECTIVO;
+            break;
+           
         }
-        else{
-            
-            System.out.println("No existe la cotizacion, lo sentimos mucho");
-            
+         
+        return pago;
+    }
+     
+     
+    public int aplicarDescuento(Pago tipoPago, int totalPago)
+    {
+        if(tipoPago == tipoPago.CHEQUE)
+        {
+            System.out.println("No se efectuaron descuentos, el monto a pagar es $" + totalPago);
         }
-        
-    }*/
+        else if(tipoPago == tipoPago.CREDITO)
+        {
+            System.out.println("No se efectuaron descuentos, el monto a pagar es $" + totalPago);
+        }
+        else if(tipoPago == tipoPago.DEBITO)
+        {
+            totalPago = (int)(totalPago * 0.95);
+            System.out.println("Se hizo un 5% de descuento, el monto a pagar es $" + totalPago);
+        }
+        else if(tipoPago == tipoPago.EFECTIVO)
+        {
+            totalPago = (int)(totalPago * 0.9);
+            System.out.println("Se hizo un 10% de descuento, el monto a pagar es $" + totalPago);
+        }
+         
+        return totalPago;
+    }
     
     public void verificarCotizacion()
     {
@@ -194,29 +220,8 @@ public class Sistema
             eliminarCotizacion();
             
         }    
-    }        
+    }  
     
-    public void seleccionarMedioDePago()
-    {        
-        System.out.println("Como desea Pagar?: ");
-        Pago pago = null;
-        int opcion = lector.leerNumero("Ingresa opcion", 1, 4);
-        
-        switch(opcion){
-            
-            case 1: pago = Pago.CHEQUE;
-            break;
-            case 2: pago = Pago.CREDITO;
-            break;
-            case 3: pago = Pago.DEBITO;
-            break;
-            case 4: pago = Pago.EFECTIVO;
-            break;
-          
-        }
-    }
-        
-        
     public void mostrarCodigos()
     {
         Set<Integer> codigos = this.catalogoProductos.keySet();
@@ -229,21 +234,11 @@ public class Sistema
     }
     
     
-        //Generar Cotizacion
-        
-        public void generarCotizacion()
-        {
-             
-        
-        }
-        
-        /*ArrayList<Producto> productosDeCategoria = new ArrayList<Producto>();
+    //Generar Cotizacion
 
-        Iterator<Codigo> it = hashmap.getIterator();
+    public void generarCotizacion()
+    {
 
-        for (Codigo codigo : it){
-            Producto p = hashmap.get(codigo);*/
 
-    
-    
+    }
 }

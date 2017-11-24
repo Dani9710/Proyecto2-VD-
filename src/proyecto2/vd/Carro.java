@@ -16,13 +16,15 @@ import java.util.Calendar;
 ///SJDKSJDKJSD
 public abstract class Carro
 {
-    private ArrayList<Producto> productos;
-    private Calendar fechaInicio;
+    protected ArrayList<Producto> productos;
+    protected Calendar fechaInicio;
+    protected int codigo;
 
-    public Carro(ArrayList<Producto> productos)
+    public Carro(ArrayList<Producto> productos, int codigo)
     {
         this.productos = productos;
         this.fechaInicio = Calendar.getInstance();
+        this.codigo = codigo; 
     }
     
     public Calendar getFechaInicio()
@@ -35,23 +37,45 @@ public abstract class Carro
         this.fechaInicio = fechaInicio;
     }
     
-    public int size()
+    public int sizeProducto()
     {
         return productos.size();
     }
 
-    public Producto get(int index)
+    public Producto getProducto(int index)
     {
         return productos.get(index);
     }
 
-    public boolean add(Producto e)
+    public boolean addProducto(Producto e)
     {
         return productos.add(e);
     }
 
-    public Producto remove(int index)
+    public Producto removeProducto(int index)
     {
         return productos.remove(index);
     }
+
+    public ArrayList<Producto> getProductos()
+    {
+        return productos;
+    }
+
+    public void setProductos(ArrayList<Producto> productos)
+    {
+        this.productos = productos;
+    }
+
+    public int getCodigo()
+    {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo)
+    {
+        this.codigo = codigo;
+    }
+    
+    
 }

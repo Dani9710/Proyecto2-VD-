@@ -5,6 +5,8 @@
  */
 package proyecto2.vd;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Danii
@@ -12,10 +14,12 @@ package proyecto2.vd;
 public class CompraDirecta extends Carro
 {
 
-    public CompraDirecta()
+    public CompraDirecta(ArrayList<Producto> productos, int codigo)
     {
-        super();
+        super(productos, codigo);
     }
+
+    
     
     
 }

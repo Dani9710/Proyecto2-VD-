@@ -1,5 +1,7 @@
 package proyecto2.vd;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author sebap
@@ -93,28 +95,6 @@ public class Interfaz
             consultarPorCategoria();
         }
         
-    }
-    
-    public void generarCotizacion()
-    {
-        
-    }
-    
-    public void efectuarCompraConCotizacion()
-    {
-        boolean continuar = true; 
-       
-        while(continuar)
-        {
-            //reviso los productos
-            
-            continuar = seguirComprando();
-            //selecciono el que voy a compra
-            //pregunto si quiere comprar otro 
-        }
-        
-        
-        
     } 
     
     public void efectuarCompraNormalmente()
@@ -128,7 +108,7 @@ public class Interfaz
         
             Producto producto = sistema.seleccionarProducto(codigo);
             sistema.addCarrito(producto);
-            continuar = seguirComprando();
+            continuar = seguirAgregandoProductos();
             pagoTotal = pagoTotal + producto.getPrecio();
             
         }
@@ -174,9 +154,54 @@ public class Interfaz
         return pago; 
     }
     
+    public void generarCotizacion()
+    {
+        
+        int codigo = lector.leerNumero("Ingrese codigo del producto que desea cotizar");
+        ArrayList<Producto> productos = new ArrayList<Producto>();
+        boolean continuar = true; 
+        while(continuar)
+        {
+            productos = sistema.agregarProductosCarritoDeCotizaciones(codigo, productos);
+            
+            Menu.menuSeguirComprando();
+            seguirAgregandoProductos();
+        }
+        
+        Carro cotizacion = new Cotizacion(false, productos);
+        sistema.put(codigo, cotizacion);
+        
+    }   
+    
+    /////////Pago: dar como parametro el precio
+    public void pagarCompra(int totalPago)
+    {
+        sistema.efectuarCompra(totalPago);
+    }
+    
+    public boolean seguirAgregandoProductos()
+    {
+        boolean continuar = true; 
+        
+        int opcion = lector.leerNumero("Ingrese su opcion");
+        
+        if(opcion == 1)
+        {
+            continuar = true;
+        }
+        
+        else
+        {
+            continuar = false;
+        }
+        
+        return continuar; 
+    }
+}
+    
     
     
    
-}
+
  
 
