@@ -14,9 +14,9 @@ import java.util.ArrayList;
 public class CompraDirecta extends Carro
 {
 
-    public CompraDirecta(ArrayList<Producto> productos, int codigo)
+    public CompraDirecta(ArrayList<Producto> productos)
     {
-        super(productos, codigo);
+        super(productos);
     }
 
     

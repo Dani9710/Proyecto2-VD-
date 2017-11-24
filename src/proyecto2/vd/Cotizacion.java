@@ -15,13 +15,15 @@ public class Cotizacion extends Carro
 {
     private Calendar fechaTermino; 
     private boolean validacion; 
+    private int codigo; 
 
-    public Cotizacion(boolean validacion, ArrayList<Producto> productos, int numeroCompra)
+    public Cotizacion(boolean validacion, ArrayList<Producto> productos, int codigo)
     {
-        super(productos, numeroCompra);
+        super(productos);
         this.fechaTermino = Calendar.getInstance();
         this.fechaTermino.add(Calendar.WEEK_OF_MONTH, 1);
         this.validacion = validacion;
+        this.codigo = codigo; 
     }
 
     
@@ -46,6 +48,17 @@ public class Cotizacion extends Carro
         this.validacion = validacion;
     }
 
+    public int getCodigo()
+    {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo)
+    {
+        this.codigo = codigo;
+    }
+
+    
     
     
     

@@ -5,6 +5,7 @@
  */
 package proyecto2.vd;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -13,18 +14,16 @@ import java.util.Calendar;
  * @author Danii
  */
 ///sdkjsdkjsdkjsdkjsd XD
-///SJDKSJDKJSD
-public abstract class Carro
+///SJDKSJDKJSDo9
+public abstract class Carro implements Serializable
 {
     protected ArrayList<Producto> productos;
     protected Calendar fechaInicio;
-    protected int codigo;
 
-    public Carro(ArrayList<Producto> productos, int codigo)
+    public Carro(ArrayList<Producto> productos)
     {
         this.productos = productos;
         this.fechaInicio = Calendar.getInstance();
-        this.codigo = codigo; 
     }
     
     public Calendar getFechaInicio()
@@ -65,16 +64,6 @@ public abstract class Carro
     public void setProductos(ArrayList<Producto> productos)
     {
         this.productos = productos;
-    }
-
-    public int getCodigo()
-    {
-        return codigo;
-    }
-
-    public void setCodigo(int codigo)
-    {
-        this.codigo = codigo;
     }
     
     

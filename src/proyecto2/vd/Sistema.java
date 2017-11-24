@@ -18,14 +18,12 @@ import java.util.Set;
 public class Sistema
 {
     private HashMap<Integer, Producto> catalogoProductos;
-    private HashMap<Integer, Carro> cotizaciones; 
-    private ArrayList<Producto> carritoCompras; 
-    private Lector lector; 
+    private HashMap<Integer, Carro> carritos; 
+    private Lector lector;
 
     public Sistema()
     {
-        this.cotizaciones = new HashMap<Integer, Carro>();
-        this.carritoCompras = new ArrayList<Producto>();
+        this.carritos = new HashMap<Integer, Carro>();
         this.lector = new Lector(); 
         this.catalogoProductos = lector.cargarArchivo();
         
@@ -80,26 +78,6 @@ public class Sistema
         return producto; 
     }
     
-    
-    
-
-    public int sizeCarritoCompras()
-    {
-        return carritoCompras.size();
-    }
-
-    public boolean addCarrito(Producto e)
-    {
-        return carritoCompras.add(e);
-    }
-
-    public Producto removeProducto(int index)
-    {
-        return carritoCompras.remove(index);
-    }
-    
-    
-    
     public Carro obtenerCotizacion(Carro c)
     {
         //Carro c = this.cotizaciones.get(codigo);
@@ -116,11 +94,9 @@ public class Sistema
     
     public Carro obtenerCotizacionPorCodigo(int codigo)
     {
-        Carro c = this.cotizaciones.get(codigo);
+        Carro c = this.carritos.get(codigo);
         return c;
     }
-    
-    
     
     public boolean isCotizacion(Carro c)
     {
@@ -130,7 +106,6 @@ public class Sistema
             return false;
     }
     
-   
     public Carro validarCotizacion(Carro c)
     {
         if(c instanceof Cotizacion)
@@ -142,9 +117,6 @@ public class Sistema
         return c;
     }
     
-    
-    
-    
     public ArrayList<Producto> agregarProductosCarritoDeCotizaciones(int codigo, ArrayList<Producto> productos)
     { 
         Producto producto = seleccionarProducto(codigo);
@@ -155,17 +127,17 @@ public class Sistema
 
     public int size()
     {
-        return cotizaciones.size();
+        return carritos.size();
     }
 
     public Carro put(Integer key, Carro value)
     {
-        return cotizaciones.put(key, value);
+        return carritos.put(key, value);
     }
 
     public Carro remove(Object key)
     {
-        return cotizaciones.remove(key);
+        return carritos.remove(key);
     }
     
     public void efectuarCompra(int totalPago)
@@ -207,8 +179,7 @@ public class Sistema
          
         return pago;
     }
-     
-     
+    
     public int aplicarDescuento(Pago tipoPago, int totalPago)
     {
         if(tipoPago == tipoPago.CHEQUE)
@@ -231,33 +202,7 @@ public class Sistema
         }
          
         return totalPago;
-    }
-    
-    public void verificarCotizacion()
-    {
-        
-    }
-
-    public void eliminarCotizacion()
-    {
-        int eliminar;
-        
-        //Eliminar = Validar.remove(Eliminar);
-        
-    }
-    
-    public void TopeSemana()
-    {
-        Calendar semana = Calendar.getInstance();
-        
-        //Revisar como comparar dos fechas Calendar
-        if(semana.equals(this))
-        {
-            
-            eliminarCotizacion();
-            
-        }    
-    }  
+    } 
     
     public void mostrarCodigos()
     {
@@ -270,5 +215,22 @@ public class Sistema
         }
     }
     
+    public void eliminarCotizacionesExpiradas()
+    {
+        Calendar hoy = Calendar.getInstance();
+        
+        Set<Integer> codigos = this.carritos.keySet();
     
+        for (Integer code : codigos)
+        {
+            Carro c = this.carritos.get(code);
+            if(c instanceof Cotizacion)
+            {
+                if(hoy.compareTo( ((Cotizacion) c).getFechaTermino() ) == 0)
+                {
+                    carritos.remove(c);
+                }
+            }
+        }     
+    } 
 }
