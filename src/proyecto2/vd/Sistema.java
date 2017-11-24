@@ -80,6 +80,8 @@ public class Sistema
         return producto; 
     }
     
+    
+    
 
     public int sizeCarritoCompras()
     {
@@ -99,7 +101,10 @@ public class Sistema
     public Carro obtenerCotizacionCodigo(int codigo)
     {
         Carro c = this.cotizaciones.get(codigo);
-        return c; 
+        if(c instanceof Cotizacion)
+        {
+            return c; 
+        }
     }
     public void validarCotizacion(int codigo)
     {
@@ -234,11 +239,4 @@ public class Sistema
     }
     
     
-    //Generar Cotizacion
-
-    public void generarCotizacion()
-    {
-
-
-    }
 }
